@@ -19,7 +19,7 @@ O projeto está dividido em dois repositórios/pastas:
 - Composer
 - Node.js
 - Expo CLI (`npm install -g expo-cli`)
-- SQLite ou MySQL (dependendo da config)
+- PostgreSQL (dependendo da config)
 - Yarn ou npm
 
 ---
