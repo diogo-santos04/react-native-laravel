@@ -9,13 +9,13 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    // GET /items
+    // GET /item
     public function index()
     {
         return response()->json(Item::all());
     }
 
-    // POST /items
+    // POST /item
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -35,7 +35,7 @@ class ItemController extends Controller
         return response()->json($item, 201);
     }
 
-    // GET /items/{id}
+    // GET /item/{id}
     public function show($id)
     {
         $item = Item::find($id);
@@ -47,7 +47,7 @@ class ItemController extends Controller
         return response()->json($item);
     }
 
-    // PUT/PATCH /items/{id}
+    // PUT/PATCH /item/{id}
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -73,7 +73,7 @@ class ItemController extends Controller
         return response()->json($item);
     }
 
-    // DELETE /items/{id}
+    // DELETE /item/{id}
     public function destroy($id)
     {
         $item = Item::find($id);
