@@ -1,15 +1,6 @@
 # 📱🔗 Integração Laravel + React Native
 
-Este projeto foi criado como um **modelo de conexão entre Laravel (API backend)** e **React Native (aplicativo mobile frontend)**, utilizando uma estrutura simples e funcional para autenticação e consumo de dados.
-
-## 🗂 Estrutura do Projeto
-
-O projeto está dividido em dois repositórios/pastas:
-
-- **`api-laravel/`**: Backend feito com Laravel.
-- **`app-react-native/`**: Frontend mobile feito com React Native (usando Expo).
-
----
+Modelo de Conexão Laravel(backend) e React Native(frontend), com implementação de Autenticaçao e um exemplo de CRUD.
 
 ## 🚀 Como rodar o projeto
 
