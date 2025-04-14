@@ -6,10 +6,10 @@ Modelo de Conexão Laravel(backend) e React Native(frontend), com implementaçã
 
 ### ✅ Pré-requisitos
 
-- PHP 8.x
+- PHP
 - Composer
 - Expo CLI (`npm install -g expo-cli`)
-- PostgreSQL (dependendo da config)
+- PostgreSQL
 - Yarn ou npm
 
 ---
