@@ -141,6 +141,17 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "bold",
     },
+    editButton: {
+        backgroundColor: "#3fffa3",
+        paddingVertical: 6,
+        paddingHorizontal: 12,
+        borderRadius: 4,
+    },
+    editButtonText: {
+        color: "#FFF",
+        fontSize: 12,
+        fontWeight: "bold",
+    },
     emptyText: {
         textAlign: "center",
         padding: 20,

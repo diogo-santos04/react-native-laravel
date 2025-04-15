@@ -5,20 +5,22 @@ import { api } from "../../services/api";
 import { styles } from "./styles";
 
 interface Item {
-  id: string | number;
-  nome: string;
-  descricao: string;
+    id: string | number;
+    nome: string;
+    descricao: string;
 }
 
 interface FormData {
-  nome: string;
-  descricao: string;
+    nome: string;
+    descricao: string;
 }
 
-export default function Menu(){
+export default function Menu() {
     const { signOut } = useContext(AuthContext);
     const [items, setItems] = useState<Item[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [editing, setEditing] = useState<boolean>(false);
+    const [editingId, setEditingId] = useState<string | number | null>(null);
 
     const [formData, setFormData] = useState<FormData>({
         nome: "",
@@ -34,11 +36,11 @@ export default function Menu(){
         try {
             const response = await api.post<Item>("/item", formData);
             console.log(response.data);
-            
+
             setItems([...items, response.data]);
-            
+
             setFormData({ nome: "", descricao: "" });
-            
+
             fetchItems();
         } catch (e) {
             console.log(e);
@@ -47,7 +49,7 @@ export default function Menu(){
         }
     }
 
-    async function fetchItems(){
+    async function fetchItems() {
         setLoading(true);
         try {
             const response = await api.get<Item[]>("/item");
@@ -59,11 +61,40 @@ export default function Menu(){
         }
     }
 
-    async function handleDeleteItem(id: string | number){
+    async function handleDeleteItem(id: string | number) {
         try {
             await api.delete(`/item/${id}`);
-            //remover da tabela 
-            setItems(items.filter(item => item.id !== id));
+            //remover da tabela
+            setItems(items.filter((item) => item.id !== id));
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
+    async function loadEditItem(id: string | number) {
+        try {
+            setEditing(true);
+            setEditingId(id);
+
+            const response = await api.get(`/item/${id}`);
+            const data = response.data;
+
+            setFormData({
+                nome: data.nome,
+                descricao: data.descricao,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
+    async function handleEditItem() {
+        try { 
+            const response = await api.put(`/item/${editingId}`, formData);
+            console.log("response edit", response.data);
+            setEditing(false);
+            setFormData({nome: "", descricao: ""});
+            fetchItems();
         } catch (e) {
             console.log(e);
         }
@@ -109,20 +140,20 @@ export default function Menu(){
                     }}
                 />
 
-                <TouchableOpacity 
-                    style={styles.button} 
-                    onPress={handleSubmit}
-                    disabled={loading}
-                >
-                    <Text style={styles.buttonText}>
-                        {loading ? "Carregando..." : "Salvar"}
-                    </Text>
-                </TouchableOpacity>
+                {editing ? (
+                    <TouchableOpacity style={styles.button} onPress={handleEditItem} disabled={loading}>
+                        <Text style={styles.buttonText}>{loading ? "Carregando..." : "Editar"}</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={loading}>
+                        <Text style={styles.buttonText}>{loading ? "Carregando..." : "Salvar"}</Text>
+                    </TouchableOpacity>
+                )}
             </View>
 
             <View style={styles.tableContainer}>
                 <Text style={styles.tableTitle}>Itens Cadastrados</Text>
-                
+
                 <View style={styles.tableHeader}>
                     <Text style={[styles.tableHeaderText, styles.idColumn]}>ID</Text>
                     <Text style={[styles.tableHeaderText, styles.nameColumn]}>Nome</Text>
@@ -142,11 +173,11 @@ export default function Menu(){
                                 <Text style={[styles.tableCell, styles.nameColumn]}>{item.nome}</Text>
                                 <Text style={[styles.tableCell, styles.descColumn]}>{item.descricao}</Text>
                                 <View style={[styles.actionColumn, styles.actionButtons]}>
-                                    <TouchableOpacity 
-                                        style={styles.deleteButton}
-                                        onPress={() => handleDeleteItem(item.id)}
-                                    >
+                                    <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteItem(item.id)}>
                                         <Text style={styles.deleteButtonText}>Excluir</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.editButton} onPress={() => loadEditItem(item.id)}>
+                                        <Text style={styles.editButtonText}>Editar</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -154,11 +185,7 @@ export default function Menu(){
                     )}
                 </ScrollView>
 
-                <TouchableOpacity 
-                    style={styles.refreshButton} 
-                    onPress={fetchItems}
-                    disabled={loading}
-                >
+                <TouchableOpacity style={styles.refreshButton} onPress={fetchItems} disabled={loading}>
                     <Text style={styles.refreshButtonText}>Atualizar Lista</Text>
                 </TouchableOpacity>
             </View>
