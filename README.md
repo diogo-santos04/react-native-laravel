@@ -1,10 +1,10 @@
-# 📱🔗 Integração Laravel + React Native
+# Integração Laravel + React Native
 
 Modelo de Conexão Laravel(backend) e React Native(frontend), com implementação de Autenticaçao e um exemplo de CRUD.
 
-## 🚀 Como rodar o projeto
+## Como rodar o projeto
 
-### ✅ Pré-requisitos
+### Pré-requisitos
 
 - PHP
 - Composer
@@ -14,7 +14,7 @@ Modelo de Conexão Laravel(backend) e React Native(frontend), com implementaçã
 
 ---
 
-## ⚙️ Backend (Laravel)
+## Backend (Laravel)
 
 ### 1. Instalação
 
@@ -42,7 +42,7 @@ php artisan migrate
 ### 4. Rodar projeto ( rodar no ip caso queira usar o celular )
 ---
 
-# 📱 Frontend (React Native)
+# Frontend (React Native)
 
 ### 1. Instalar as dependências 
 ```bash
