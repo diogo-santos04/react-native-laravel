@@ -4,12 +4,11 @@
 1. [Visão Geral](#visão-geral)
 2. [Estrutura do Projeto](#estrutura-do-projeto)
 3. [Tecnologias Utilizadas](#tecnologias-utilizadas)
-4. [Configuração e Instalação](#configuração-e-instalação)
-5. [Autenticação](#autenticação)
-6. [Navegação](#navegação)
-7. [Gerenciamento de Estado](#gerenciamento-de-estado)
-8. [API e Integração](#api-e-integração)
-9. [Componentes Principais](#componentes-principais)
+4. [Autenticação](#autenticação)
+5. [Navegação](#navegação)
+6. [Gerenciamento de Estado](#gerenciamento-de-estado)
+7. [API e Integração](#api-e-integração)
+8. [Componentes Principais](#componentes-principais)
 
 
 ## Visão Geral
