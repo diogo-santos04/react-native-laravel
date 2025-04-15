@@ -43,6 +43,11 @@ react-native-laravel/
 ## Autenticação
 
 O sistema de autenticação utiliza tokens JWT armazenados localmente através do AsyncStorage.
+OBS: Certifique-se de que no Laravel o JWT esteja devidamente configurado (config/jwt.php)
+Voce deve adicionar no seu ENV o JWT_SECRET e JWT_TTL caso ainda não tenha.
+JWT_SECRET = chave JWT do projeto
+JWT_TTL = tempo em que o token dura em minutos, o padrão esta em 60 (caso queira que o usuario sempre fique logado coloque NULL e remova 'exp' do 
+required_claims no mesmo arquivo ) 
 
 ### Fluxo de Autenticação
 
