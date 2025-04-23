@@ -46,7 +46,7 @@ php artisan migrate
 
 ### 1. Instalar as dependências 
 ```bash
-cd app-react-native
+cd react-native-laravel
 npm install
 ```
 
